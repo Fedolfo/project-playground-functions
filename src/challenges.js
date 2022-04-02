@@ -5,30 +5,21 @@ function compareTrue(valor1, valor2) {
   }
   return false;
 }
-console.log(compareTrue('1', 'false'));
 // Desafio 2
 function calcArea(base, height) {
   return (base * height) / 2;
 }
-let sum = calcArea(10, 50);
-let sum2 = calcArea(5, 2);
-let sum3 = calcArea(51, 1);
 
-console.log(sum, sum2, sum3);
 // Desafio 3
 function splitSentence(string) {
   return string.split(' ');
 }
-console.log(splitSentence('go trybe vamo que vamo foguete'));
 // Desafio 4
 function concatName(phrase) {
   let concatenacao = `${phrase[phrase.length - 1]}, ${phrase[0]}`;
   return concatenacao;
 }
-let name = concatName(['Lucas', 'Cassiano', 'Ferraz', 'Paolillo']);
-let trybe = concatName(['foguete', 'não', 'tem', 'ré']);
-let pirate = concatName(['captain', 'my', 'captain']);
-console.log(name, trybe, pirate);
+
 // Desafio 5
 function footballPoints(wins, ties) {
   let vitory = 3 * wins;
@@ -36,34 +27,32 @@ function footballPoints(wins, ties) {
   let result = vitory + empate;
   return result;
 }
-let soma = footballPoints(14, 8);
-let soma2 = footballPoints(1, 2);
-let soma3 = footballPoints(0, 0);
-console.log(soma, soma2, soma3);
+
 // Desafio 6
-let array1 = [9, 1, 2, 3, 9, 5, 7];
-let array2 = [0, 4, 4, 4, 9, 2, 1];
-let array3 = [0, 0, 0];
-function highestCount(array) {
+function biggerNumber(array) {
   let maiorNumero = array[0];
-  let counter = 0;
+
   for (let i = 0; i < array.length; i += 1) {
     if (array[i] >= maiorNumero) {
       maiorNumero = array[i];
     }
   }
-  for (let j = 0; j < array.length; j += 1) {
-    if (array[j] === maiorNumero) {
+  return maiorNumero;
+}
+
+function highestCount(array1) {
+  let maiorNumero = biggerNumber(array1);
+  let counter = 0;
+
+  for (let j = 0; j < array1.length; j += 1) {
+    if (array1[j] === maiorNumero) {
       counter += 1;
     }
   }
   return counter;
 }
-let totalSoma = highestCount(array1);
-let totalSoma2 = highestCount(array2);
-let totalSoma3 = highestCount(array3);
-console.log(totalSoma, totalSoma2, totalSoma3);
-// Bianca Caetano me ajudou!
+console.log(highestCount([1, 2, 3, 2, 3, 3, 4, 5, 6, 7, 8, 9, 10]));
+
 // Desafio 7
 function catAndMouse(mouse, cat1, cat2) {
   let gatoA = Math.abs(cat1 - mouse);
@@ -78,25 +67,32 @@ function catAndMouse(mouse, cat1, cat2) {
   }
 }
 // Desafio 8
-function fizzBuzz(buzzArray) {
-  let somaTudo = [];
-  for (let index = 0; index < buzzArray.length; index += 1) {
-    if (buzzArray[index] % 15 === 0) {
-      somaTudo.push('fizzBuzz');
-    } else if (buzzArray[index] % 5 === 0) {
-      somaTudo.push('buzz');
-    } else if (buzzArray[index] % 3 === 0) {
-      somaTudo.push('fizz');
+
+function recoverStringFizzBuzz(s) {
+  if (s % 3 === 0) {
+    return 'fizz';
+  }
+  if (s % 5 === 0) {
+    return 'buzz';
+  }
+  return 'bug';
+}
+
+function fizzBuzz(phraseArray) {
+  let response = [];
+  for (let index = 0; index < phraseArray.length; index += 1) {
+    if (phraseArray[index] % 3 === 0 && phraseArray[index] % 5 === 0) {
+      response.push('fizzbuzz');
     } else {
-      somaTudo.push('bug!');
+      response.push(recoverStringFizzBuzz(phraseArray[index]));
     }
   }
-  return somaTudo;
+  return response;
 }
 
 // Desafio 9
 
-function encode(nome) {
+function encode(name) {
   let saida = '';
   let obje = {
     a: 1,
@@ -105,16 +101,15 @@ function encode(nome) {
     o: 4,
     u: 5,
   };
-  for (let i = 0; i < nome.length; i += 1) {
-    if (obje[nome[i]]) {
-      saida += obje[nome[i]];
+  for (let i = 0; i < name.length; i += 1) {
+    if (obje[name[i]]) {
+      saida += obje[name[i]];
     } else {
-      saida += nome[i];
+      saida += name[i];
     }
   }
   return saida;
 }
-console.log(encode('Hello! hello!'));
 
 function decode(string) {
   let saida = '';
@@ -135,7 +130,6 @@ function decode(string) {
 
   return saida;
 }
-console.log(decode('H2ll4!'));
 module.exports = {
   calcArea,
   catAndMouse,
