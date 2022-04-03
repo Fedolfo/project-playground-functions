@@ -29,6 +29,7 @@ function footballPoints(wins, ties) {
 }
 
 // Desafio 6
+// Bianca Caetano me ajudou!
 function biggerNumber(array) {
   let maiorNumero = array[0];
 
@@ -75,14 +76,14 @@ function recoverStringFizzBuzz(s) {
   if (s % 5 === 0) {
     return 'buzz';
   }
-  return 'bug';
+  return 'bug!';
 }
 
 function fizzBuzz(phraseArray) {
   let response = [];
   for (let index = 0; index < phraseArray.length; index += 1) {
     if (phraseArray[index] % 3 === 0 && phraseArray[index] % 5 === 0) {
-      response.push('fizzbuzz');
+      response.push('fizzBuzz');
     } else {
       response.push(recoverStringFizzBuzz(phraseArray[index]));
     }

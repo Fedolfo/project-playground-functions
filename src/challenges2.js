@@ -17,11 +17,41 @@ function techList(array, name) {
     return 0;
   });
 }
-console.log(techList(['React', 'Jest', 'HTML', 'CSS', 'JavaScript'], 'Lucas'));
 // Desafio 11
-function generatePhoneNumber() {
-  // seu código aqui
+function validLessZeroAndBiggerThenNine(array) {
+  let validateArray = array;
+  for (let index = 0; index < validateArray.length; index += 1) {
+    const element = validateArray[index];
+    if (element < Number('0') || element >= Number('9')) {
+      return 'não é possível gerar um número de telefone com esses valores';
+    }
+  }
+  return validateArray;
 }
+
+function validateLengthNumberAndNumberRepeated(array) {
+  let validateArray = array;
+  for (let index = 0; index < validateArray.length; index += 1) {
+    const element = validateArray[index];
+    if (element > Number('11')) return 'Array com tamanho incorreto';
+    if (new Set(array).size !== array.length) {
+      return 'não é possível gerar um número de telefone com esses valores';
+    }
+  }
+  return validateArray;
+}
+
+function generatePhoneNumber(array) {
+  const validations = validateLengthNumberAndNumberRepeated(array)
+    || validLessZeroAndBiggerThenNine(array);
+  if (validations) return validations;
+  let phoneNumber = '';
+  for (let index = 0; index < array.length; index += 1) {
+    phoneNumber += array[index];
+  }
+  return phoneNumber;
+}
+console.log(generatePhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]));
 
 // Desafio 12
 function triangleCheck() {
