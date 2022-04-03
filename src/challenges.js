@@ -52,7 +52,6 @@ function highestCount(array1) {
   }
   return counter;
 }
-console.log(highestCount([1, 2, 3, 2, 3, 3, 4, 5, 6, 7, 8, 9, 10]));
 
 // Desafio 7
 function catAndMouse(mouse, cat1, cat2) {
