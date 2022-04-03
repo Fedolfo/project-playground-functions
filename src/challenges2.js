@@ -1,5 +1,6 @@
 // Desafio 10
 function techList(array, name) {
+  if (array.length === 0) return 'Vazio!';
   let response = [];
   for (let index = 0; index < array.length; index += 1) {
     response.push({
@@ -7,51 +8,57 @@ function techList(array, name) {
       tech: array[index],
     });
   }
-  return response.sort(function (a, b) {
+  return response.sort((a, b) => {
     if (a.tech < b.tech) {
       return -1;
-    }
-    if (a.tech > b.tech) {
-      return 1;
     }
     return 0;
   });
 }
+
 // Desafio 11
+function numberRepeated(array, number) {
+  let repeat = 0;
+  for (let index = 0; index < array.length; index += 1) {
+    const element = array[index];
+    if (element === number) {
+      repeat += 1;
+    }
+  }
+  return repeat;
+}
+
+function validDoNotNumberRepeated(array) {
+  for (let index = 0; index < array.length; index += 1) {
+    let validate = numberRepeated(array, array[index]);
+    if (validate >= 3) {
+      return 'não é possível gerar um número de telefone com esses valores';
+    }
+  }
+  return array;
+}
+
 function validLessZeroAndBiggerThenNine(array) {
   let validateArray = array;
   for (let index = 0; index < validateArray.length; index += 1) {
     const element = validateArray[index];
-    if (element < Number('0') || element >= Number('9')) {
+    if ((element < 0) || (element > 9)) {
       return 'não é possível gerar um número de telefone com esses valores';
     }
   }
-  return validateArray;
+  return validDoNotNumberRepeated(validateArray);
 }
 
-function validateLengthNumberAndNumberRepeated(array) {
-  let validateArray = array;
-  for (let index = 0; index < validateArray.length; index += 1) {
-    const element = validateArray[index];
-    if (element > Number('11')) return 'Array com tamanho incorreto';
-    if (new Set(array).size !== array.length) {
-      return 'não é possível gerar um número de telefone com esses valores';
-    }
-  }
-  return validateArray;
-}
+function generatePhoneNumber(a) {
+  if (a.length !== 11) return 'Array com tamanho incorreto.';
 
-function generatePhoneNumber(array) {
-  const validations = validateLengthNumberAndNumberRepeated(array)
-    || validLessZeroAndBiggerThenNine(array);
-  if (validations) return validations;
-  let phoneNumber = '';
-  for (let index = 0; index < array.length; index += 1) {
-    phoneNumber += array[index];
-  }
-  return phoneNumber;
+  const validations = validLessZeroAndBiggerThenNine(a);
+
+  if (typeof validations === 'string') return validations;
+
+  return `(${a[0]}${a[1]}) ${a[2]}${a[3]}${a[4]}${a[5]}${a[6]}-${a[7]}${a[8]}${a[9]}${a[10]}`;
 }
-console.log(generatePhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]));
+console.log(generatePhoneNumber([5, 2, 8, 1, 5, 3, 7, 2, 8, 9, 0]));
 
 // Desafio 12
 function triangleCheck() {
